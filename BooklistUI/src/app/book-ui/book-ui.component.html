@@ -1,0 +1,94 @@
+<div class="row" style="background-color: #188ecd;">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content grey-text">
+                <div class="row">
+                    <div class="col s4">
+                        <h5>Add Book</h5>
+                        <form #bookform="ngForm" (ngSubmit)="onSubmit(bookform)">
+                            <input type="hidden" name="_id" #_id="ngModel" 
+                            [(ngModel)]="bookservice.selectedbookmodel._id">
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Name:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="name" #name="ngModel" [(ngModel)]="bookservice.selectedbookmodel.name" placeholder="Enter book name" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Year:</label>
+                                    <input type="text" name="year" #year="ngModel" [(ngModel)]="bookservice.selectedbookmodel.year" placeholder="Enter publishing year">
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Author:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="author" #author="ngModel" [(ngModel)]="bookservice.selectedbookmodel.author" placeholder="Enter author name" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Price:
+                                        <label class="red-text">*</label>
+                                    </label>
+                                    <input type="text" name="price" #price="ngModel" [(ngModel)]="bookservice.selectedbookmodel.price" placeholder="Enter price" required>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>ISBN:</label>
+                                    <input type="text" name="ISBN" #ISBN="ngModel" [(ngModel)]="bookservice.selectedbookmodel.ISBN" placeholder="Enter ISBN code">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn btn-custom right" type="button" (click)="resetForm(bookform)">Reset</button>
+                                    <button class="btn btn-custom right" type="submit" [disabled]="!bookform.valid">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col s8">
+                        <h5>The List</h5>
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Year</th>
+                                    <th>Author</th>
+                                    <th>Price</th>
+                                    <th>ISBN</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tr *ngFor="let book of bookservice.bookmodels">
+                                <td>{{book.name}}</td>
+                                <td>{{book.year}}</td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.price}}</td>
+                                <td>{{book.ISBN}}</td>
+                                <td>
+                                    <a class="action-btn" (click)="editbook(book)">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a class="action-btn">
+                                        <i class="material-icons" (click)="deletebook(book,bookform)">delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

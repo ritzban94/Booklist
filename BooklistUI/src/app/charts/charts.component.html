@@ -1,0 +1,28 @@
+<div class="row" style="background-color: #188ecd; height:820px">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="col s4">
+                        <div>
+                        <h3>Statistics</h3>
+                        <p>The activity in the applicaton is displayed in the charts.
+                            The chart displays the number of books added, updated, and deleted so far.</p>
+                        <p>Select a chart type:</p>
+                        </div>
+                        <div class="input-field col s12">
+                        <select class="browser-default" [(ngModel)]="typeselected" (ngModelChange)="producechart()">
+                            <option *ngFor="let ct of charttypes" [value]="ct.typevalue">{{ ct.typename }}</option>
+                        </select>
+                        </div>
+                    </div>   
+                    <div class="col s8">
+                        <div *ngIf="linechart">
+                            <canvas #canvas>{{ linechart }}</canvas>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>               
